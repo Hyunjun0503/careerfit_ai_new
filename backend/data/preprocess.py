@@ -27,6 +27,7 @@ RAG_JSON = os.path.join(BASE_DIR, "rag_documents.json")
 
 
 
+
 # ─── 2. CSV 읽기 
 
 def load_data(filepath: str) -> pd.DataFrame:
@@ -57,6 +58,69 @@ def load_data(filepath: str) -> pd.DataFrame:
 
     return df
 
+# 결측치 확인
+
+def check_missing(df: pd.DataFrame) -> pd.DataFrame:
+
+    """
+
+    각 컬럼의 결측치(빈값) 수와 비율을 확인합니다.
+
+    요리 비유: 재료 중 빠진 것이 있는지 확인하는 단계입니다.
+
+    """
+
+    print("\n=== 결측치 확인 ===")
+
+    missing = df.isnull().sum()
+
+    missing_pct = (df.isnull().sum() / len(df) * 100).round(1)
+
+    result = pd.DataFrame({
+
+        "결측치 수": missing,
+
+        "결측치 비율(%)": missing_pct
+
+    })
+
+    print(result[result["결측치 수"] > 0])  # 결측치 있는 컬럼만 출력
+
+    if missing.sum() == 0:
+
+        print("   ✅ 결측치 없음")
+
+    else:
+
+        print(f"   ⚠️  총 {missing.sum()}개 결측치 발견")
+
+    return df
+
+# 결측치 처리
+
+def handle_missing(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    결측치를 처리합니다.
+    - 텍스트 컬럼: 빈 문자열로 채웁니다
+    - 핵심 컬럼이 비어있는 행은 제거합니다
+    """
+    print("\n=== 결측치 처리 ===")
+    before = len(df)
+
+    # 핵심 컬럼(title, required_skills)이 비어있는 행 제거
+    # 이 정보가 없으면 RAG 검색에 의미가 없기 때문입니다
+    df = df.dropna(subset=["title", "required_skills"])
+
+    # 나머지 텍스트 컬럼은 빈 문자열로 채웁니다
+    text_cols = ["preferred_skills", "description", "company", "job_type"]
+    for col in text_cols:
+        if col in df.columns:
+            df[col] = df[col].fillna("")
+
+    after = len(df)
+    print(f"   처리 전: {before}행 → 처리 후: {after}행")
+    print(f"   제거된 행: {before - after}행")
+    return df
 
 
 # 실행 테스트
