@@ -58,7 +58,7 @@ def load_data(filepath: str) -> pd.DataFrame:
 
     return df
 
-# 결측치 확인
+# 결측치 확인 함수
 
 def check_missing(df: pd.DataFrame) -> pd.DataFrame:
 
@@ -96,7 +96,7 @@ def check_missing(df: pd.DataFrame) -> pd.DataFrame:
 
     return df
 
-# 결측치 처리
+# 결측치 처리 함수
 
 def handle_missing(df: pd.DataFrame) -> pd.DataFrame:
     """
@@ -122,7 +122,8 @@ def handle_missing(df: pd.DataFrame) -> pd.DataFrame:
     print(f"   제거된 행: {before - after}행")
     return df
 
-# 중복 확인 및 제거함수 추가
+# 중복 데이터 확인
+
 def remove_duplicates(df: pd.DataFrame) -> pd.DataFrame:
 
     """
@@ -163,7 +164,7 @@ def remove_duplicates(df: pd.DataFrame) -> pd.DataFrame:
 
 
 
-# 스킬 키워드 표준화 함수 추가
+# 스킬 키워드 표준화 함수 
 # 표준화 사전: 왼쪽 → 오른쪽으로 변환합니다
 
 SKILL_NORMALIZATION = {
@@ -252,7 +253,7 @@ def standardize_skills(df: pd.DataFrame) -> pd.DataFrame:
 
     return df  
 
-# SQLite 저장 함수 추가
+# SQLite 저장 함수 
 import sqlite3
 
 def save_to_sqlite(df: pd.DataFrame, db_path: str) -> None:
@@ -280,7 +281,7 @@ def save_to_sqlite(df: pd.DataFrame, db_path: str) -> None:
 
     conn.close()
 
-# SQLite 조회 함수 추가
+# SQLite 조회 함수
 def query_sqlite(db_path: str) -> None:
     """
     SQLite에서 데이터를 조회해 저장 결과를 확인합니다.
@@ -318,7 +319,7 @@ def query_sqlite(db_path: str) -> None:
 
     conn.close()
 
-# RAG 문서 변환 함수 추가   
+# RAG 문서 변환 함수 
 
 def convert_to_rag_documents(df: pd.DataFrame) -> list:
     """

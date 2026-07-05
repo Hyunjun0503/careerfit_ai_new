@@ -11,6 +11,9 @@ class AnalyzeRequest(BaseModel):
     major: str
     skills: List[str]
     job_type: str
+    experience_years: int = 0  # 0이면 신입
+    preferred_company_size: str = "무관"  # 무관 / 대기업 / 중견기업 / 스타트업
+
 
 class AnalyzeResponse(BaseModel):
     answer: str
