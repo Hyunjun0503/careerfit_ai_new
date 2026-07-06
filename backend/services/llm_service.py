@@ -77,3 +77,6 @@ def get_llm_response(query: str, context_docs: list) -> dict:
         if "429" in error_msg or "RESOURCE_EXHAUSTED" in error_msg:
             return {"answer": "[API 한도 초과] MOCK_MODE=true 로 전환하고 계속하세요.", "sources": []}
         return {"answer": f"[오류] {error_msg}", "sources": []}
+
+print("GEMINI_API_KEY =", GEMINI_API_KEY)
+print("API KEY LENGTH =", len(GEMINI_API_KEY) if GEMINI_API_KEY else None)
