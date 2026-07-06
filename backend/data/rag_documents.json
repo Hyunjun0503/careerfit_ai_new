@@ -8,6 +8,9 @@
       "job_type": "데이터 분석",
       "deadline": "2026-08-31",
       "source": "jobs.csv"
+      "deadline_month""09",
+      "is_startup": "true"
+      "first_saved_date": "2026-07-04"
     },
     "doc_id": "job_1"
   },

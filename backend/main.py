@@ -29,4 +29,7 @@ app.include_router(analyze.router) # ← 추가
 
 @app.get("/")
 def root():
-    return {"message": "CareerFit AI 서버가 실행 중입니다."}
+    return {
+        "message": "CareerFit AI 서버가 실행 중입니다.",
+        "version": "0.1.0"
+    }
