@@ -8,14 +8,24 @@
 ## 프로젝트 개요
 
 취업준비를 하는 학생들은 희망 직무에 지원하기 위해 실무 경험, 자격증 등 어떠한 역량이 필요한지 파악하는데 어려움을 겪고 있습니다.
-이러한 문제점을 해결하기 위해 CareerFit AI를 개발했고 이는 실제 채용공고를 바탕으로 사용자의 전공, 보유기술, 관심 직무를 분석하는 서비스입니다. 이를 통해 취업준비생들이 부족한 역량을 인지하고 이에 맞춰 준비할 수 있도록 도움을 주는 것을 목표로 합니다.
+CareerFit AI는 실제 채용공고를 바탕으로 사용자의 전공, 보유기술, 관심 직무를 분석하는 서비스입이를 통해 취업준비생들이 부족한 역량을 인지하고 이에 맞춰 준비할 수 있도록 도움을 주는 것을 목표로 합니다.
+RAG 구조를 사용해 사용자의 정보를 바탕으로 ChromaDB에서 유사한 채용 공고를 먼저 검색한 후, 이 공고를 바탕으로 Gemini가 답변을 생성하기 때문에 단순 AI의 추측이 아닌 실제 채용 공고를 근거로 한 분석 결과를 제공합니다.
 
 ## 프로젝트 구조
 
-careerfit-ai/ ├── backend/ # FastAPI 백엔드 │ ├── main.py # FastAPI 진입점 │ ├── routers/ # API 엔드포인트 │ ├── services/ # RAG, Gemini 서비스 │ ├── data/ # CSV, SQLite, RAG 데이터 │ └── Dockerfile # Docker 설정 ├── frontend/ # React + Vite UI │ └── src/ ├── docs/ # 프로젝트 문서 및 하네스 └── README.md
+careerfit-ai/ 
+├── backend/ # FastAPI 백엔드 
+│ ├── main.py # FastAPI 진입점 
+│ ├── routers/ # API 엔드포인트 
+│ ├── services/ # RAG, Gemini 서비스 
+│ ├── data/ # CSV, SQLite, RAG 데이터 
+│ └── Dockerfile # Docker 설정 
+├── frontend/ # React + Vite UI 
+│ └── src/ 
+├── docs/ # 프로젝트 문서 및 하네스 
+└── README.md
 
 ## <h2>🛠 기술 스택</h2>
-
 
 | 영역 | 기술 |
 |------|------|
@@ -24,8 +34,6 @@ careerfit-ai/ ├── backend/ # FastAPI 백엔드 │ ├── main.py # Fas
 | 데이터 | Pandas, SQLite, ChromaDB |
 | 프론트엔드 | React, Vite |
 | 실행 환경 | Docker |
-
-## 
 
 ## 진행 현황
 
@@ -50,3 +58,11 @@ careerfit-ai/ ├── backend/ # FastAPI 백엔드 │ ├── main.py # Fas
 * 결과, 출처 카드 화면 출력 확인 및 UI 변경
 
 - [ ] 5일차: Docker + 포트폴리오 완성
+
+## 개발 과정 중 어려웠던 점
+코드 구현 자체보다 RAG의 동작 원리를 이해하는 것이 처음에 어려웠습니다. 사용자의 정보를 받으면 chromaDB에서 유사한 채용 공고를 먼저 검색하고, 이를 기반으로 Gemini가 함께 답변을 생성한다는 것을 깨달았습니다. 또한 파이썬과 Docker 실행 과정에서 발생한 여러 충돌 문제와 오류를 AI조교와 해결하면서 AI 사용 경험을 쌓을 수 있었습니다.
+
+## 향후 개선점
+● 이력서 PDF 자동 분석 기능
+● 실시간 채용 공고 API 연동
+● 분석 결과 기반, 개인 맞춤형 학습 로드맵 제공
