@@ -109,6 +109,77 @@ SQLite 저장      ChromaDB 저장
 
 - [X] 5일차: Docker + 포트폴리오 완성
 
+## ✅ 프로젝트 검증
+
+다음 항목을 기준으로 프로젝트가 정상적으로 동작하는 것을 확인했습니다.
+
+| 검증 항목 | 결과 |
+|-----------|------|
+| FastAPI 서버 실행 (`/health`) | ✅ 정상 |
+| React UI 실행 | ✅ 정상 |
+| `/analyze` API 호출 | ✅ 정상 |
+| RAG 검색 결과(`sources`) 반환 | ✅ 정상 |
+| Gemini API 응답 생성 | ✅ 정상 |
+| SQLite 데이터 조회 | ✅ 정상 |
+| ChromaDB 유사도 검색 | ✅ 정상 |
+| Docker 이미지 생성 | ✅ 정상 |
+| Docker 컨테이너 실행 | ✅ 정상 |
+| GitHub 저장소 업로드 | ✅ 완료 |
+
+### API 테스트
+
+#### Health Check
+
+```http
+GET /health
+```
+
+응답 예시
+
+```json
+{
+  "status": "ok"
+}
+```
+
+#### Analyze
+
+```http
+POST /analyze
+```
+
+입력 예시
+
+```json
+{
+  "major": "컴퓨터과학부",
+  "skills": ["Python", "SQL"],
+  "job": "백엔드 개발자"
+}
+```
+
+응답 항목
+
+- answer
+- sources
+- confidence
+
+### Docker 실행 확인
+
+```bash
+docker build -t careerfit-ai .
+docker run -p 8000:8000 --env-file .env careerfit-ai
+```
+
+실행 후
+
+```
+INFO: Application startup complete.
+INFO: Uvicorn running on http://0.0.0.0:8000
+```
+
+로그가 출력되는 것을 확인했습니다.
+
 ## 개발 과정 중 어려웠던 점
 코드 구현 자체보다 RAG의 동작 원리를 이해하는 것이 처음에 어려웠습니다. 사용자의 정보를 받으면 chromaDB에서 유사한 채용 공고를 먼저 검색하고, 이를 기반으로 Gemini가 함께 답변을 생성한다는 것을 깨달았습니다. 또한 파이썬과 Docker 실행 과정에서 발생한 여러 충돌 문제와 오류를 AI조교와 해결하면서 AI 사용 경험을 쌓을 수 있었습니다.
 
@@ -122,3 +193,8 @@ SQLite 저장      ChromaDB 저장
 
 ### 3. 개인 맞춤형 학습 로드맵 제공
 사용자의 분석 결과와 부족한 기술을 기반으로 학습 우선순위를 자동 생성하는 기능을 추가할 예정입니다. 예를 들어 Python이 부족한 경우에는 Python → SQL → Pandas → 프로젝트 순으로 단계별 학습 로드맵을 생성하고, 추천 강의와 실습 프로젝트를 함께 제공하도록 구현할 계획입니다.
+
+## Developer
+- Name : 장현준
+- Role : Backend / AI Service
+- Email : jhjub2629g@gmail.com
