@@ -197,4 +197,4 @@ INFO: Uvicorn running on http://0.0.0.0:8000
 ## Developer
 - Name : 장현준
 - Role : Backend / AI Service
-- Email : jhjub2629g@gmail.com
+- Email : jhjun2629g@gmail.com
